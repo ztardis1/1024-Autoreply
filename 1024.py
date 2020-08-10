@@ -110,7 +110,7 @@ class Autoreply:
                 match.remove(data)
             self.match=match
         except:
-            print('移除失败，不知道因为啥。。。')
+            print('移除失败，知道因为啥，因为没时间改先放这。。。')
             pass
         #print(match)
 
@@ -119,8 +119,9 @@ class Autoreply:
         m=random.randint(0,len(self.match)-1)
         geturl='http://t66y.com/'+self.match[m]
         self.geturl=geturl
-        #将今日回复过的加入黑名单
-        self.black_list.append(geturl)
+        #上面bug由来：将今日回复过的加入黑名单
+        #逻辑问题，以后修改
+        #self.black_list.append(geturl)
         tid=self.match[m][16:len(self.match[m])-5]
         self.tid=tid
         print('请求链接是: '+geturl)
