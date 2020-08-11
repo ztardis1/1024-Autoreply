@@ -32,10 +32,10 @@ jobs:
         user: ${{ secrets.USER }}
         password: ${{ secrets.PASSWORD }}
         secret: ${{ secrets.SECRET }}
-      run:
-        sed 's/INPUTUSER/user'         ./1024.py -i\n
-        sed 's/INPUTPASSWORD/password' ./1024.py -i\n
-        sed 's/INPUTSECRET/secret'     ./1024.py -i\n
+      run :
+        sed 's/INPUTUSER/$user'         ./1024.py -i
+        sed 's/INPUTPASSWORD/$password' ./1024.py -i
+        sed 's/INPUTSECRET/$secret'     ./1024.py -i
 
     - name: run 1024.py
       run:
