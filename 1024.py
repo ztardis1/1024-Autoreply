@@ -35,7 +35,7 @@ class Autoreply:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36'
     }
     def __init__(self,user,password,secret):
-        self.user= user
+        self.user= user.encode('gb2312')
         self.password= password
         self.secret =secret
 
@@ -224,9 +224,9 @@ if __name__ == "__main__":
                     print('登录成功')
                     success = True
     m=auto.getnumber()
-    auto.gettodaylist()
     #回复
     while n<10 and suc is False:
+        auto.gettodaylist()
         auto.getonelink()
         auto.getreply()
         auto.getmatch()
