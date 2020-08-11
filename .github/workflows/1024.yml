@@ -34,13 +34,14 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
         SECRET: ${{ secrets.SECRET }}
       run:
-        get-content ./1024.py | % {$_ -replace 'INPUTUSER','$env:USER'} > ./10241.py
-        get-content ./10241.py | % {$_ -replace 'INPUTPASSWORD','$env:PASSWORD'} > ./10242.py
-        get-content ./10242.py | % {$_ -replace 'INPUTSECRET','$env:SECRET'} > ./10243.py
-        Remove-Item './1024.py'
-        Remove-Item './10241.py'
-        Remove-Item './10242.py'
-        ren ./10242.py ./1024.py
+        cd /
+        get-content 1024.py | %{$_ -replace 'INPUTUSER','$env:USER'} > 10241.py
+        get-content 10241.py | %{$_ -replace 'INPUTPASSWORD','$env:PASSWORD'} > 10242.py
+        get-content 10242.py | %{$_ -replace 'INPUTSECRET','$env:SECRET'} > 10243.py
+        Remove-Item '1024.py'
+        Remove-Item '10241.py'
+        Remove-Item '10242.py'
+        ren 10242.py 1024.py
 
     - name: run 1024.py
       run:
