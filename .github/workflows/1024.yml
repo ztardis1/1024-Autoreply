@@ -28,10 +28,14 @@ jobs:
         pip install onetimepass
 
     - name : Initialize variables
+      with:
+        user: ${{ secrets.USER }}
+        password: ${{ secrets.PASSWORD }}
+        secret: ${{ secrets.SECRET }}
       run:
-        sed 's/INPUTUSER/${{ secrets.USER }}'         ./1024.py -i\n
-        sed 's/INPUTPASSWORD/${{ secrets.PASSWORD }}' ./1024.py -i\n
-        sed 's/INPUTSECRET/${{ secrets.SECRET }}'     ./1024.py -i\n
+        sed 's/INPUTUSER/user'         ./1024.py -i\n
+        sed 's/INPUTPASSWORD/password' ./1024.py -i\n
+        sed 's/INPUTSECRET/secret'     ./1024.py -i\n
 
     - name: run 1024.py
       run:
