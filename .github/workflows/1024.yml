@@ -36,7 +36,7 @@ jobs:
       run:
         sed -i 's/INPUTUSER/"$USER"/' ./1024.py
         sed -i 's/INPUTPASSWORD/"$PASSWORD"/' ./1024.py
-        sed -i 's/INPUTSECRET/"$SECRET"/' ./1024.py -i
+        sed -i 's/INPUTSECRET/"$SECRET"/' ./1024.py
 
     - name: run 1024.py
       run:
