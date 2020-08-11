@@ -33,7 +33,7 @@ jobs:
         USER: ${{ secrets.USER }}
         PASSWORD: ${{ secrets.PASSWORD }}
         SECRET: ${{ secrets.SECRET }}
-      run :
+      run:
         get-content ./1024.py | ForEach-Object {$_ -replace 'INPUTUSER','$env:USER'} > ./10241.py
         get-content ./10241.py | ForEach-Object {$_ -replace 'INPUTPASSWORD','$env:PASSWORD'} > ./10242.py
         get-content ./10242.py | ForEach-Object {$_ -replace 'INPUTSECRET','$env:SECRET'} > ./10243.py
