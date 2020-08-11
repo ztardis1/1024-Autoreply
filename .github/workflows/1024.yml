@@ -34,6 +34,7 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
         SECRET: ${{ secrets.SECRET }}
       run:
+        chmod +x ./change-variables.sh
         source ./change-variables.sh
 
     - name: run 1024.py
