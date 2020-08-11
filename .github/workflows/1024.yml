@@ -1,0 +1,28 @@
+name: 1024-AutoReply
+
+on:
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout actions
+      uses: action/checkout@v2
+
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    - name: install env
+      run :
+        python -m pip install --upgrade pip
+        pip install requests
+        pip install onetimepass
+        pip install urllib
+    
+    - name: run 1024.py
+      run:
+        python -u ./1024.py
