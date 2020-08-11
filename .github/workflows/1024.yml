@@ -28,7 +28,7 @@ jobs:
         pip install onetimepass
 
     - name : Initialize variables
-    - shell: pwsh
+      shell: pwsh
       env:
         USER: ${{ secrets.USER }}
         PASSWORD: ${{ secrets.PASSWORD }}
