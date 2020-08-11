@@ -3,6 +3,9 @@ name: 1024-AutoReply
 on:
   watch:
     types: [started]
+  schedule:
+    - cron: '0 19 * * *'
+
 
 jobs:
   build:
