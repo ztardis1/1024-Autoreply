@@ -23,8 +23,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests
         pip install onetimepass
-        pip install urllib
-    
+
     - name: run 1024.py
       run:
         python -u ./1024.py
