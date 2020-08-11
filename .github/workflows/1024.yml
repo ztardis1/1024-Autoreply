@@ -27,6 +27,17 @@ jobs:
         pip install requests
         pip install onetimepass
 
+    - name : Initialize variables
+      shell : bash
+      env:
+          USER: ${{ secret.USER }}
+          PASSWORD: ${{ secret.PASSWORD }}
+          SECRET: ${{ secret.SECRET }}
+      run:
+        sed -i 's/INPUTUSER/${{ secret.USER }}' ./1024.py
+        sed -i 's/INPUTPASSWORD/${{ secret.PASSWORD }}' ./1024.py
+        sed -i 's/INPUTSECRET/${{ secret.SECRET }}' ./1024.py
+        
     - name: run 1024.py
       run:
         python -u ./1024.py

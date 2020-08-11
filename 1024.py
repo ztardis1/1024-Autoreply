@@ -12,6 +12,7 @@ class Autoreply:
     posturl='http://t66y.com/post.php?'
     indexurl='http://t66y.com/index.php'
     black_list=['htm_data/2007/7/4032088.html','htm_data/2003/7/3832698.html','htm_data/1602/7/37458.html','htm_data/1502/7/1331010.html','htm_data/2005/7/2520305.html','htm_data/2005/7/2404767.html']
+    #today_list=['']
     s=requests.Session()
     headers={
         'Host': 't66y.com',
@@ -39,6 +40,7 @@ class Autoreply:
         self.password= password
         self.secret =secret
 
+
     def login1(self):
         sleep(2)
         flag=False
@@ -62,6 +64,7 @@ class Autoreply:
         elif login.find('賬號已開啟兩步驗證')!=-1:
             Err='賬號已開啟兩步驗證'
             return Err
+
 
     def login2(self):
         sleep(2)
@@ -110,7 +113,7 @@ class Autoreply:
                 match.remove(data)
             self.match=match
         except:
-            print('移除失败，知道因为啥，因为没时间改先放这。。。')
+            print('移除失败，不知道因为啥。。。')
             pass
         #print(match)
 
@@ -119,8 +122,7 @@ class Autoreply:
         m=random.randint(0,len(self.match)-1)
         geturl='http://t66y.com/'+self.match[m]
         self.geturl=geturl
-        #上面bug由来：将今日回复过的加入黑名单
-        #逻辑问题，以后修改
+        #将今日回复过的加入黑名单
         #self.black_list.append(geturl)
         tid=self.match[m][16:len(self.match[m])-5]
         self.tid=tid
@@ -156,6 +158,7 @@ class Autoreply:
     #     self.encoderesult=res
     #     self.encodereply=reply_news
     #     #print(self.encodereply)
+
 
     def postreply(self):
         data={
@@ -202,10 +205,11 @@ if __name__ == "__main__":
     suc=False
     n=0
     #设置参数
-    user= 'XXXXXXXX'
-    password= 'XXXXXXXX'
-    secret ='XXXXXXXXXXXXXXXX'
+    user= 'INPUTUSER'
+    password= 'INPUTPASSWORD'
+    secret ='INPUTSECRET'
     auto=Autoreply(user,password,secret)
+    print(user)
     #登录
     while success is None:
         while auto.login1()=='登录尝试次数过多,需输入验证码':
