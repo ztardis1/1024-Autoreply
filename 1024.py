@@ -6,6 +6,7 @@ import onetimepass as otp
 from time import sleep
 from urllib import parse
 import os
+from getver import Getver
 class Autoreply:
     result=None
     loginurl = 'http://t66y.com/login.php'
@@ -82,18 +83,18 @@ class Autoreply:
             res='已經順利登錄'
             return res
 
-    def getverwebq(self):
+    def getverwebp(self):
         code=random.uniform(0,1)
         code=round(code,16)
         vercodeurl='http://t66y.com/require/codeimg.php?'+str(code)
         image=self.s.get(vercodeurl,headers=self.headers1)
-        f=open('image.webq','wb')
+        f=open('image.webp','wb')
         f.write(image.content)
         f.close()
 
-    def inputvercode(self):
+    def inputvercode(self,vercode):
         sleep(2)
-        vercode=input('请输入验证码:')
+        vercode=vercode
         data={
             'validate': vercode
         }
@@ -218,9 +219,12 @@ if __name__ == "__main__":
     while success is None:
         while auto.login1()=='登录尝试次数过多,需输入验证码':
             print('登录尝试次数过多,需输入验证码')
-            auto.getverwebq()
-            while auto.inputvercode()=='验证码不正确，请重新输入':
-                auto.getverwebq()
+            auto.getverwebp()
+            getcd=Getver()
+            vercode=getcd.getcode()
+            while auto.inputvercode(vercode)=='验证码不正确，请重新输入':
+                auto.getverwebp()
+                vercode=getcd.getcode()
                 print('验证码不正确，请重新输入')
             if auto.login1()=='賬號已開啟兩步驗證':
                 if auto.login2()=='已經順利登錄':
@@ -232,9 +236,9 @@ if __name__ == "__main__":
                     print('登录成功')
                     success = True
     m=auto.getnumber()
+    auto.gettodaylist()
     #回复
     while n<10 and suc is False:
-        auto.gettodaylist()
         auto.getonelink()
         auto.getreply()
         auto.getmatch()
