@@ -1,7 +1,7 @@
 from PIL import Image
 import requests
 import base64
-
+import os
 class Getver:
     def getcode(self):
         im=Image.open("image.webp")
