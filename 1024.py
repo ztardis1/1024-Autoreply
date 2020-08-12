@@ -251,6 +251,7 @@ if __name__ == "__main__":
             while sleeptime > 0:
                 if sleeptime % 100 == 0:
                     auto.getlook()
+                    sleeptime= sleeptime -1
                     print('keep alive')
                 else:
                     sleeptime= sleeptime -1
