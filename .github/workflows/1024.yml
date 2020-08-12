@@ -32,5 +32,6 @@ jobs:
         USER: ${{ secrets.USER }}
         PASSWORD: ${{ secrets.PASSWORD }}
         SECRET: ${{ secrets.SECRET }}
+        TOKER: ${{ secrets.TOKER }}
       run:
         python -u ./1024.py
