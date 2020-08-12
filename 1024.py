@@ -248,6 +248,10 @@ if __name__ == "__main__":
             print('回复成功')
             print('休眠'+str(sleeptime)+'s...')
             sleep(sleeptime)
+            while sleeptime > 0:
+                sleeptime= sleeptime -1
+                sleep(1)
+                print(sleeptime)
         elif au=='今日已达上限':
             print('今日次数已达10次')
             suc=True
