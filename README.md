@@ -5,11 +5,11 @@
 github actions没有验证码功能，但可以初步使用
 
 通过设置secrets中
-user= 'XXXXXXXX'                   		用户名
+USER             用户名
 
-password= 'XXXXXXXX'			     密码
+PASSWORD	     密码
 
-secret ='XXXXXXXXXXXXXXXX'     谷歌身份验证器密钥
+SECRET           谷歌身份验证器密钥
 
 即可使用
 

@@ -131,14 +131,17 @@ class Autoreply:
     
     #不知道啥用，留着吧
     def getmatch(self):
-        get=self.s.get(self.geturl,headers=self.headers)
-        get=get.text.encode('iso-8859-1').decode('gbk')
-        pat='<h4>.*</h4>'
-        res=re.search(pat,get)
-        res=res.group(0).replace('<h4>','').replace('</h4>','')
-        res='Re:'+res
-        self.res=res
-        #print(res)
+        try:
+            get=self.s.get(self.geturl,headers=self.headers)
+            get=get.text.encode('iso-8859-1').decode('gbk')
+            pat='<h4>.*</h4>'
+            res=re.search(pat,get)
+            res=res.group(0).replace('<h4>','').replace('</h4>','')
+            res='Re:'+res
+            self.res=res.encode('gb2312')
+            #print(res)
+        except:
+            pass
 
     def getreply(self):
         #自定义回复内容，记得修改随机数
