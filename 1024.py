@@ -5,6 +5,7 @@ import random
 import onetimepass as otp
 from time import sleep
 from urllib import parse
+import os
 class Autoreply:
     result=None
     loginurl = 'http://t66y.com/login.php'
@@ -205,9 +206,9 @@ if __name__ == "__main__":
     suc=False
     n=0
     #设置参数
-    user= 'INPUTUSER'
-    password= 'INPUTPASSWORD'
-    secret ='INPUTSECRET'
+    user= os.environ["USER"]
+    password= os.environ["PASSWORD"]
+    secret =os.environ["SECRET"]
     auto=Autoreply(user,password,secret)
     print(user)
     #登录
