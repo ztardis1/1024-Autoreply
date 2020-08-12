@@ -35,4 +35,4 @@ jobs:
         SECRET: ${{ secrets.SECRET }}
         TOKER: ${{ secrets.TOKER }}
       run:
-        python ./1024.py
+        python 1024.py
