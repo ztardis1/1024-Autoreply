@@ -239,15 +239,17 @@ if __name__ == "__main__":
     auto.gettodaylist()
     #回复
     while n<10 and suc is False:
-        auto.getonelink()
-        auto.getreply()
-        auto.getmatch()
-        sleeptime=random.randint(1030,2048)
-        au=auto.postreply()
+        print('第'+str(n+1)+'次执行')
+        #auto.getonelink()
+        #auto.getreply()
+        #auto.getmatch()
+        sleeptime=random.randint(1050,2000)
+        #au=auto.postreply()
+        au='回复成功'
         if au=='回复成功':
             print('回复成功')
             print('休眠'+str(sleeptime)+'s...')
-            sleep(sleeptime)
+            #sleep(sleeptime)
             while sleeptime > 0:
                 sleeptime= sleeptime -1
                 sleep(1)
