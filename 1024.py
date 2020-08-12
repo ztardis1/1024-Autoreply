@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 import requests
 import re
 import random
@@ -238,22 +237,22 @@ if __name__ == "__main__":
     m=auto.getnumber()
     auto.gettodaylist()
     #回复
-    while n<10 and suc is False:
+    while n < 10 and suc is False:
         print('第'+str(n+1)+'次执行')
-        #auto.getonelink()
-        #auto.getreply()
-        #auto.getmatch()
+        auto.getonelink()
+        auto.getreply()
+        auto.getmatch()
         sleeptime=random.randint(1050,1500)
-        #au=auto.postreply()
-        au='回复成功'
+        au=auto.postreply()
         if au=='回复成功':
             print('回复成功')
             print('休眠'+str(sleeptime)+'s...')
-            #sleep(sleeptime)     #会出bug
+            #sleep(sleeptime)                     #会出bug
             while sleeptime > 0:
                 sleeptime= sleeptime -1
                 sleep(1)
                 #print(sleeptime)
+            print('休眠完成')
         elif au=='今日已达上限':
             print('今日次数已达10次')
             suc=True
