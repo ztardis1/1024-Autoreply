@@ -165,7 +165,7 @@ class Autoreply:
     #     self.encodereply=reply_news
     #     #print(self.encodereply)
     def getlook(self):
-        res=s.get(url=self.geturl,headers=self.headers)
+        res=self.s.get(url=self.geturl,headers=self.headers)
 
     def postreply(self):
         data={
