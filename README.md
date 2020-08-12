@@ -2,13 +2,14 @@
 
 因为考研在即，加上1024的回复机制确实有点繁琐，所以打算用个python脚本做一个自动回帖 
 
-通过设置
+github actions没有验证码功能，但可以初步使用
 
+通过设置secrets中
 user= 'XXXXXXXX'                   		用户名
 
 password= 'XXXXXXXX'			     密码
 
- secret ='XXXXXXXXXXXXXXXX'     谷歌身份验证器密钥
+secret ='XXXXXXXXXXXXXXXX'     谷歌身份验证器密钥
 
 即可使用
 
@@ -16,7 +17,7 @@ password= 'XXXXXXXX'			     密码
 
 ​						`sleeptime设置为(1030,2048)之间`，可以根据需要修改
 
-如果同一ip登录次数大概登录超过三次之后，会触发验证码机制，生成的验证码保存为运行目录下的`image.webq`，可以手动输入。如果有条件可以修改为打码平台验证
+如果同一ip登录次数大概登录超过三次之后，会触发验证码机制，生成的验证码保存为运行目录下的`image.webq`，~~~可以手动输入~~~。如果有条件可以修改为打码平台验证
 
 同样，可以修改为使用cookies登录，就不用这么繁琐了
 
@@ -24,7 +25,7 @@ password= 'XXXXXXXX'			     密码
 
 **后继可能添加功能：**
 
-1.修改为github Actions的形式
+1.修改为github Actions的形式(初步完成)
 
 2.添加邮件通知功能
 

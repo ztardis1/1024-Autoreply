@@ -210,7 +210,6 @@ if __name__ == "__main__":
     password= os.environ["PASSWORD"]
     secret =os.environ["SECRET"]
     auto=Autoreply(user,password,secret)
-    print(user)
     #登录
     while success is None:
         while auto.login1()=='登录尝试次数过多,需输入验证码':
