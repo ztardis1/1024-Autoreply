@@ -50,7 +50,7 @@ class Autoreply:
                 'pwuser': self.user,
                 'pwpwd':  self.password,
                 'hideid': '0',
-                'cktime': '86400',
+                'cktime': '0',
                 'forward': 'http://t66y.com/post.php?',
                 'jumpurl': 'http://t66y.com/post.php?',
                 'step': '2'
@@ -142,6 +142,7 @@ class Autoreply:
             self.res=res.encode('gb2312')
             #print(res)
         except:
+            print('出错')
             pass
 
     def getreply(self):
