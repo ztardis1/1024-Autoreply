@@ -208,7 +208,6 @@ class Autoreply:
 if __name__ == "__main__":
     success=None
     suc=False
-    n=0
     #设置参数
     user= os.environ["USER"]
     password= os.environ["PASSWORD"]
@@ -237,7 +236,7 @@ if __name__ == "__main__":
     m=auto.getnumber()
     auto.gettodaylist()
     #回复
-    while n < 10 and suc is False:
+    while suc is False:
         print('第'+str(n+1)+'次执行')
         auto.getonelink()
         auto.getreply()
