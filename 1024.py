@@ -164,7 +164,8 @@ class Autoreply:
     #     self.encoderesult=res
     #     self.encodereply=reply_news
     #     #print(self.encodereply)
-
+    def getlook(self):
+        res=s.get(url=self.geturl,headers=self.headers)
 
     def postreply(self):
         data={
@@ -243,13 +244,17 @@ if __name__ == "__main__":
         auto.getmatch()
         sleeptime=random.randint(1050,1500)
         au=auto.postreply()
-        if au=='回复成功':
+        if au=='今日已达上限':
             print('回复成功')
             print('休眠'+str(sleeptime)+'s...')
             #sleep(sleeptime)                     #会出bug
             while sleeptime > 0:
-                sleeptime= sleeptime -1
-                sleep(1)
+                if sleeptime % 100 == 0:
+                    auto.getlook()
+                    print('keep alive')
+                else:
+                    sleeptime= sleeptime -1
+                    sleep(1)
                 #print(sleeptime)
             print('休眠完成')
         elif au=='今日已达上限':
