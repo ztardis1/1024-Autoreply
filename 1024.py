@@ -237,7 +237,6 @@ if __name__ == "__main__":
     auto.gettodaylist()
     #回复
     while suc is False:
-        print('第'+str(n+1)+'次执行')
         auto.getonelink()
         auto.getreply()
         auto.getmatch()
