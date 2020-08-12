@@ -16,8 +16,8 @@ class Getver:
             'Content-Type':'application/json;charset=UTF-8'
         }
         data={
-            'username': os.environ["username"] ,
-            'password': os.environ["password"] ,
+            'username': os.environ["CODEUSER"] ,
+            'password': os.environ["CODEPASS"] ,
             'image':image.decode('utf-8')
         }
         res=requests.post(url=host,data=json.dumps(data))

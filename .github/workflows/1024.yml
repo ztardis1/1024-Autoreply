@@ -34,5 +34,7 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
         SECRET: ${{ secrets.SECRET }}
         TOKER: ${{ secrets.TOKER }}
+        CODEUSER: ${{ secrets.CODEUSER }}
+        CODEPASS: ${{ secrets.CODEPASS }}
       run:
         python 1024.py
