@@ -249,7 +249,7 @@ if __name__ == "__main__":
             print('休眠'+str(sleeptime)+'s...')
             #sleep(sleeptime)                     #会出bug
             while sleeptime > 0:
-                if sleeptime % 100 == 0:
+                if sleeptime % 300 == 0:
                     auto.getlook()
                     sleeptime= sleeptime -1
                     print('keep alive')
