@@ -114,7 +114,7 @@ class Autoreply:
                 match.remove(data)
             self.match=match
         except:
-            print('移除失败，不知道因为啥。。。')
+            print('移除失败，知道因为啥。。。')
             pass
         #print(match)
 
@@ -133,6 +133,7 @@ class Autoreply:
     def getmatch(self):
         try:
             get=self.s.get(self.geturl,headers=self.headers)
+            sleep(2)
             get=get.text.encode('iso-8859-1').decode('gbk')
             pat='<h4>.*</h4>'
             res=re.search(pat,get)
