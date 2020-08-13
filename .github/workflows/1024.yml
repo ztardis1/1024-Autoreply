@@ -19,9 +19,15 @@ jobs:
         sudo apt-get -y install python3-pip
         sudo apt-get -y install python3-setuptools
 
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
     - name: install env
       run :
-        pip3 install requests onetimepass pillow
+        python -m pip install --upgrade pip
+        pip install requests onetimepass pillow
 
     - name: run 1024.py
       env:
