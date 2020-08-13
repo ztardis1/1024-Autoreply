@@ -34,10 +34,10 @@ ps:可选两个是识别验证码用的，任选其一即可，也可以都不�
 
 `from getver1 import Getver` 为 `from getver import Getver`
 
-2.可以通过`getreply()中的reply与reply_m(随机数)`设置回复内容，`sleeptime设置为(1030,2048)之间`，可以根据需要修改
+<h4>2.可以通过`getreply()中的reply与reply_m(随机数)`设置回复内容，`sleeptime设置为(1030,2048)之间`，可以根据需要修改</h4>
 
 
-3.下面是自己下载py文件运行时的问题
+<h4>3.下面是自己下载py文件运行时的问题</h4>
 
 修改以下参数，记得用''括起来
 
