@@ -16,10 +16,6 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install git
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
 
     - name: install env
       run :
@@ -37,4 +33,4 @@ jobs:
         CODEUSER: ${{ secrets.CODEUSER }}
         CODEPASS: ${{ secrets.CODEPASS }}
       run:
-        python 1024.py
+        python3 1024.py
