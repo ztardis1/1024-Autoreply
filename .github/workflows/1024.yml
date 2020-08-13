@@ -20,9 +20,9 @@ jobs:
     - name: install env
       run :
         sudo apt-get install python3-pip
-        python3 install requests
-        python3 install onetimepass
-        python3 install pillow
+        pip3 install requests
+        pip3 install onetimepass
+        pip3 install pillow
 
     - name: run 1024.py
       env:
