@@ -4,40 +4,37 @@
 
 <h4>使用说明(github Actions方式)</h4>
 
-1.通过settings -> Secrets -> new secret添加下列值
+<h4>1.通过settings -> Secrets -> new secret添加下列值</h4>
 
 (必需)
-USER             用户名
 
-PASSWORD	     密码
+        USER             用户名
 
-SECRET           谷歌身份验证器密钥
+        PASSWORD	     密码
+
+        SECRET           谷歌身份验证器密钥
 
 (可选1)([申请地址](https://market.aliyun.com/products/57124001/cmapi027426.html))
 
-TOKER            阿里验证码识别接口AppCode
+        TOKER            阿里验证码识别接口AppCode
 
 (可选2)([注册地址](http://ttshitu.com/register.html?inviter=d14dbc3ccecc4df2b4e0eaebef556f13) )
 
-CODEUSER         注册用户名
+        CODEUSER         注册用户名
 
-CODEPASS         注册密码
+        CODEPASS         注册密码
 
-ps:可选两个是识别验证码用的，任选其一即可，也可以都不选。如果不选碰见需要验证码的则会运行失败
+ps:可选两个是识别验证码用的，任选其一即可，也可以都不选。如果不选碰见需要验证码的则会运行失败。
 
-第一个用的是阿里一个api接口，每月30次免费的，正常是够用的
+   第一个用的是阿里一个api接口，每月30次免费的，正常是够用的
 
-第二个是自己找的一个平台，1元可以识别500次，因为我最开始需要调试，所以用的这个
+   第二个是自己找的一个平台，1元可以识别500次，因为我最开始需要调试，所以用的这个
 
 代码中使用的就是第二个，如果想要使用第一个，只需修改`1024.py`文件中的`第八行`
 
-`from getver1 import Getver` 为
+`from getver1 import Getver` 为 `from getver import Getver`
 
-`from getver import Getver`
-
-2.可以通过`getreply()中的reply与reply_m(随机数)`设置回复内容，
-
-​						`sleeptime设置为(1030,2048)之间`，可以根据需要修改
+2.可以通过`getreply()中的reply与reply_m(随机数)`设置回复内容，`sleeptime设置为(1030,2048)之间`，可以根据需要修改
 
 
 3.下面是自己下载py文件运行时的问题
@@ -46,7 +43,7 @@ ps:可选两个是识别验证码用的，任选其一即可，也可以都不�
 
 user=''             用户名
 
-password=''	     密码
+password=''	        密码
 
 secret=''           谷歌身份验证器密钥
 
