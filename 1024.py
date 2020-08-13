@@ -5,9 +5,10 @@ import onetimepass as otp
 from time import sleep
 from urllib import parse
 import os
-from getver import Getver
+from getver1 import Getver
 class Autoreply:
     result=None
+    over=False
     loginurl = 'http://t66y.com/login.php'
     url='http://t66y.com/thread0806.php?fid=7&search=today'
     posturl='http://t66y.com/post.php?'
@@ -35,7 +36,7 @@ class Autoreply:
         'Proxy-Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36'
-    }
+        }
     def __init__(self,user,password,secret):
         self.user= user.encode('gb2312')
         self.password= password
@@ -66,7 +67,6 @@ class Autoreply:
             Err='賬號已開啟兩步驗證'
             return Err
 
-
     def login2(self):
         sleep(2)
         my_token = otp.get_totp(self.secret)
@@ -76,6 +76,9 @@ class Autoreply:
         'oneCode': str(my_token)
         }
         login=self.s.post(self.loginurl,headers=self.headers,data=data)
+        if self.over is False:
+            self.cookies=login.cookies
+            self.over=True
         login=login.text.encode('iso-8859-1').decode('gbk')
         #print('login2')
         if login.find('您已經順利登錄')!=-1:
@@ -132,7 +135,7 @@ class Autoreply:
     #不知道啥用，留着吧
     def getmatch(self):
         try:
-            get=self.s.get(self.geturl,headers=self.headers)
+            get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
             sleep(2)
             get=get.text.encode('iso-8859-1').decode('gbk')
             pat='<h4>.*</h4>'
@@ -164,8 +167,6 @@ class Autoreply:
     #     self.encoderesult=res
     #     self.encodereply=reply_news
     #     #print(self.encodereply)
-    def getlook(self):
-        res=self.s.get(url=self.geturl,headers=self.headers)
 
     def postreply(self):
         data={
@@ -174,7 +175,7 @@ class Autoreply:
             'atc_autourl': '1',
             #'atc_title':self.encoderesult,
             #'atc_content': self.encodereply ,
-            'atc_title':self.res,
+            'atc_title': self.res ,
             'atc_content': self.reply_news ,
             'step': '2',
             'action': 'reply',
@@ -187,7 +188,7 @@ class Autoreply:
             'verify':'verify'
         }
         #print(data)
-        post=self.s.post(self.posturl,data=data,headers=self.headers2)
+        post=requests.post(self.posturl,data=data,headers=self.headers2,cookies=self.cookies)
         post = post.text.encode('iso-8859-1').decode('gbk')
         if post.find('發貼完畢點擊')!=-1:
             status='回复成功'
@@ -199,13 +200,14 @@ class Autoreply:
         #print(post)
 
     def getnumber(self):
-        index=self.s.get(self.indexurl,headers=self.headers)
+        index=requests.get(self.indexurl,headers=self.headers,cookies=self.cookies)
         index = index.text.encode('iso-8859-1').decode('gbk')
         pat='共發表帖子: \d{1,5}'
         num=re.search(pat,index).group(0)
         num=num.replace('共發表帖子: ','')
-        #print(num)
         return num
+
+
 
 if __name__ == "__main__":
     success=None
@@ -247,30 +249,16 @@ if __name__ == "__main__":
         if au=='回复成功':
             print('回复成功')
             print('休眠'+str(sleeptime)+'s...')
-            #sleep(sleeptime)                     #会出bug
-            while sleeptime > 0:
-                if sleeptime % 300 == 0:
-                    auto.getlook()
-                    sleeptime= sleeptime -1
-                    print('keep alive')
-                else:
-                    sleeptime= sleeptime -1
-                    sleep(1)
-                #print(sleeptime)
+            sleep(sleeptime)
             print('休眠完成')
         elif au=='今日已达上限':
             print('今日次数已达10次')
             suc=True
         else:
-            print('=1024限制！！！')
-            while sleeptime > 0:
-                if sleeptime % 300 == 0:
-                    auto.getlook()
-                    sleeptime= sleeptime -1
-                    print('keep alive')
-                else:
-                    sleeptime= sleeptime -1
-                    sleep(1)
+            print('1024限制！！！')
+            print('休眠'+str(sleeptime)+'s...')
+            sleep(sleeptime)
+            print('休眠完成')
     n=auto.getnumber()
     print('开始时发表帖子:'+m)
     print('结束时发表帖子:'+n)
