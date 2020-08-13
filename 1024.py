@@ -245,7 +245,7 @@ if __name__ == "__main__":
             sleep(sleeptime)
             print('休眠完成')
         elif au=='今日已达上限':
-            print('今日次数已达10次')
+            print('回复失败，今日次数已达10次')
             suc=True
         else:
             print('1024限制！！！')
