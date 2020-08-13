@@ -262,7 +262,15 @@ if __name__ == "__main__":
             print('今日次数已达10次')
             suc=True
         else:
-            print('失败！！！')
+            print('=1024限制！！！')
+            while sleeptime > 0:
+                if sleeptime % 300 == 0:
+                    auto.getlook()
+                    sleeptime= sleeptime -1
+                    print('keep alive')
+                else:
+                    sleeptime= sleeptime -1
+                    sleep(1)
     n=auto.getnumber()
     print('开始时发表帖子:'+m)
     print('结束时发表帖子:'+n)
