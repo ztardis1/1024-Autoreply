@@ -29,3 +29,4 @@ class Getver:
         code=res[m+10:n-3]
         print(code)
         return code
+    
