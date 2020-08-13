@@ -10,7 +10,7 @@
 
         USER             用户名
 
-        PASSWORD	     密码
+        PASSWORD         密码
 
         SECRET           谷歌身份验证器密钥
 
@@ -43,7 +43,7 @@ ps:可选两个是识别验证码用的，任选其一即可，也可以都不�
 
         user=''                 用户名
 
-        password=''	        密码
+        password=''             密码
 
         secret=''               谷歌身份验证器密钥
 
