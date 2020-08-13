@@ -4,7 +4,7 @@
 
 <h4>使用说明(github Actions方式)</h4>
 
-<h4>1.通过settings -> Secrets -> new secret添加下列值</h4>
+<h4>1.Fork之后，通过settings -> Secrets -> new secret添加下列值</h4>
 
 (必需)
 
