@@ -14,7 +14,6 @@ class Autoreply:
     posturl='http://t66y.com/post.php?'
     indexurl='http://t66y.com/index.php'
     black_list=['htm_data/2007/7/4032088.html','htm_data/2003/7/3832698.html','htm_data/1602/7/37458.html','htm_data/1502/7/1331010.html','htm_data/2005/7/2520305.html','htm_data/2005/7/2404767.html']
-    #today_list=['']
     s=requests.Session()
     headers={
         'Host': 't66y.com',
@@ -58,8 +57,6 @@ class Autoreply:
         }
         login=self.s.post(self.loginurl,headers=self.headers,data=data)
         login=login.text.encode('iso-8859-1').decode('gbk')
-        #print(login)
-        #print('login1')
         if login.find('登录尝试次数过多')!=-1:
             Err='登录尝试次数过多,需输入验证码'
             return Err
@@ -80,7 +77,6 @@ class Autoreply:
             self.cookies=login.cookies
             self.over=True
         login=login.text.encode('iso-8859-1').decode('gbk')
-        #print('login2')
         if login.find('您已經順利登錄')!=-1:
             res='已經順利登錄'
             return res
@@ -102,7 +98,6 @@ class Autoreply:
         }
         login=self.s.post(self.loginurl,data=data,headers=self.headers1)
         login=login.text.encode('iso-8859-1').decode('gbk')
-        #print(login)
         if login.find('驗證碼不正確')!=-1:
             Err='验证码不正确，请重新输入'
             return Err
@@ -119,15 +114,12 @@ class Autoreply:
         except:
             print('移除失败，知道因为啥。。。')
             pass
-        #print(match)
 
     def getonelink(self):
         geturl=''
         m=random.randint(0,len(self.match)-1)
         geturl='http://t66y.com/'+self.match[m]
         self.geturl=geturl
-        #将今日回复过的加入黑名单
-        #self.black_list.append(geturl)
         tid=self.match[m][16:len(self.match[m])-5]
         self.tid=tid
         print('请求链接是: '+geturl)
@@ -135,6 +127,7 @@ class Autoreply:
     #不知道啥用，留着吧
     def getmatch(self):
         try:
+            sleep(2)
             get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
             sleep(2)
             get=get.text.encode('iso-8859-1').decode('gbk')
@@ -173,8 +166,6 @@ class Autoreply:
             'atc_usesign':'1',
             'atc_convert':'1',
             'atc_autourl': '1',
-            #'atc_title':self.encoderesult,
-            #'atc_content': self.encodereply ,
             'atc_title': self.res ,
             'atc_content': self.reply_news ,
             'step': '2',
@@ -187,20 +178,19 @@ class Autoreply:
             'touid':'',
             'verify':'verify'
         }
-        #print(data)
         post=requests.post(self.posturl,data=data,headers=self.headers2,cookies=self.cookies)
         post = post.text.encode('iso-8859-1').decode('gbk')
         if post.find('發貼完畢點擊')!=-1:
             status='回复成功'
-            #print('回复成功')
             return status
         if post.find('所屬的用戶組')!=-1:
             status='今日已达上限'
             return status
-        #print(post)
 
     def getnumber(self):
+        sleep(2)
         index=requests.get(self.indexurl,headers=self.headers,cookies=self.cookies)
+        sleep(2)
         index = index.text.encode('iso-8859-1').decode('gbk')
         pat='共發表帖子: \d{1,5}'
         num=re.search(pat,index).group(0)
