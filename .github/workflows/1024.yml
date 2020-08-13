@@ -21,9 +21,7 @@ jobs:
 
     - name: install env
       run :
-        pip3 install requests
-        pip3 install onetimepass
-        pip3 install pillow
+        pip3 install requests onetimepass pillow
 
     - name: run 1024.py
       env:
