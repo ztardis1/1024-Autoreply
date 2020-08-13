@@ -19,9 +19,10 @@ jobs:
 
     - name: install env
       run :
-        /usr/bin/python3 install requests
-        /usr/bin/python3 install onetimepass
-        /usr/bin/python3 install pillow
+        apt-get install python3-pip
+        python3 install requests
+        python3 install onetimepass
+        python3 install pillow
 
     - name: run 1024.py
       env:
@@ -32,4 +33,4 @@ jobs:
         CODEUSER: ${{ secrets.CODEUSER }}
         CODEPASS: ${{ secrets.CODEPASS }}
       run:
-        /usr/bin/python3 1024.py
+        python3 1024.py
