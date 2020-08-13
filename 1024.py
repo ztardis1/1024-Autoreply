@@ -234,7 +234,7 @@ if __name__ == "__main__":
         auto.getonelink()
         auto.getreply()
         auto.getmatch()
-        sleeptime=random.randint(1050,1500)
+        sleeptime=random.randint(1024,2048)
         au=auto.postreply()
         if au=='回复成功':
             print('回复成功')
