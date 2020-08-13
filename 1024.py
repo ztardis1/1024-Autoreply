@@ -200,6 +200,7 @@ class Autoreply:
 
 
 if __name__ == "__main__":
+    n=0
     success=None
     suc=False
     #设置参数
@@ -230,7 +231,8 @@ if __name__ == "__main__":
     m=auto.getnumber()
     auto.gettodaylist()
     #回复
-    while suc is False:
+    while n<10 and suc is False:
+        print("当前在第"+str(n+1)+'个。')
         auto.getonelink()
         auto.getreply()
         auto.getmatch()
@@ -238,6 +240,7 @@ if __name__ == "__main__":
         au=auto.postreply()
         if au=='回复成功':
             print('回复成功')
+            n=n+1
             print('休眠'+str(sleeptime)+'s...')
             sleep(sleeptime)
             print('休眠完成')
