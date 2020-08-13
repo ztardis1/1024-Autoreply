@@ -2,34 +2,64 @@
 
 因为考研在即，加上1024的回复机制确实有点繁琐，所以打算用个python脚本做一个自动回帖 
 
-通过设置secrets中
+<h4>使用说明(github Actions方式)</h4>
 
+1.通过settings -> Secrets -> new secret添加下列值
+
+(必需)
 USER             用户名
 
 PASSWORD	     密码
 
 SECRET           谷歌身份验证器密钥
 
+(可选1)([申请地址](https://market.aliyun.com/products/57124001/cmapi027426.html))
+
 TOKER            阿里验证码识别接口AppCode
 
-`https://market.aliyun.com/products/57124001/cmapi027426.html`在这里申请即可使用，每月30次限制。足够用了
+(可选2)([注册地址](http://ttshitu.com/register.html?inviter=d14dbc3ccecc4df2b4e0eaebef556f13) )
 
-其中可以通过`getreply()中的reply与reply_m(随机数)`设置回复内容，
+CODEUSER         注册用户名
+
+CODEPASS         注册密码
+
+ps:可选两个是识别验证码用的，任选其一即可，也可以都不选。如果不选碰见需要验证码的则会运行失败
+
+第一个用的是阿里一个api接口，每月30次免费的，正常是够用的
+
+第二个是自己找的一个平台，1元可以识别500次，因为我最开始需要调试，所以用的这个
+
+代码中使用的就是第二个，如果想要使用第一个，只需修改`1024.py`文件中的`第八行`
+
+`from getver1 import Getver` 为
+
+`from getver import Getver`
+
+2.可以通过`getreply()中的reply与reply_m(随机数)`设置回复内容，
 
 ​						`sleeptime设置为(1030,2048)之间`，可以根据需要修改
 
-下面是自己下载py文件运行时的问题
 
-如果同一ip登录次数大概登录超过三次之后，会触发验证码机制，生成的验证码保存为运行目录下的`image.webp`，~~可以手动输入~~。如果有条件可以修改为打码平台验证
+3.下面是自己下载py文件运行时的问题
 
-同样，可以修改为使用cookies登录，就不用这么繁琐了
+修改以下参数，记得用''括起来
+
+user=''             用户名
+
+password=''	     密码
+
+secret=''           谷歌身份验证器密钥
+
+验证码部分根据自己选择修改参数类似
+
+有能力可以自己登陆修改为使用cookies登录，就不需要验证码部分了
 
 有bug反馈下，暂时没时间修，就放之后吧
 
 **后继可能添加功能：**
 
-~~1.修改为github Actions的形式(初步完成)(有bug?)~~
+~~1.修改为github Actions的形式(已完成)~~
 
 ~~2.添加邮件通知功能(失败github会自己发邮件)~~
 
-~~3.这种自动生成的api应该可以通过别的方式识别，再想办法(暂时使用阿里云验证码识别接口)~~
+~~3.这种自动生成的api应该可以通过别的方式识别，再想办法(使用打码平台验证码识别接口)~~
