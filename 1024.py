@@ -185,7 +185,6 @@ class Autoreply:
             return status
 
     def getnumber(self):
-        print(str(self.cookies))
         sleep(2)
         index=requests.get(self.indexurl,headers=self.headers,cookies=self.cookies)
         index = index.text.encode('iso-8859-1').decode('gbk')
