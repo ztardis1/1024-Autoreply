@@ -37,7 +37,7 @@ class Autoreply:
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36'
         }
-        
+
     def __init__(self,user,password,secret):
         self.user= user.encode('gb2312')
         self.password= password
@@ -127,7 +127,6 @@ class Autoreply:
         self.tid=tid
         #print('请求链接是: '+geturl)
     
-    #不知道啥用，留着吧
     def getmatch(self):
         sleep(2)
         get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
