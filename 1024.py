@@ -76,7 +76,6 @@ class Autoreply:
         if self.over is False:
             self.cookies=login.cookies
             self.over=True
-            print('cookies为'+str(self.cookies))
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('您已經順利登錄')!=-1:
             res='已經順利登錄'
