@@ -6,7 +6,6 @@ from time import sleep
 from urllib import parse
 import os
 from getver1 import Getver
-
 class Autoreply:
     result=None
     over=False
@@ -16,6 +15,7 @@ class Autoreply:
     posturl='http://t66y.com/post.php?'
     indexurl='http://t66y.com/index.php'
     black_list=['htm_data/2007/7/4032088.html','htm_data/2003/7/3832698.html','htm_data/1602/7/37458.html','htm_data/1502/7/1331010.html','htm_data/2005/7/2520305.html','htm_data/2005/7/2404767.html']
+    s=requests.Session()
     headers={
         'Host': 't66y.com',
         'Proxy-Connection': 'keep-alive',
@@ -37,7 +37,6 @@ class Autoreply:
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36'
         }
-
     def __init__(self,user,password,secret):
         self.user= user.encode('gb2312')
         self.password= password
@@ -55,10 +54,8 @@ class Autoreply:
                 'jumpurl': 'http://t66y.com/post.php?',
                 'step': '2'
         }
-        login=requests.post(self.loginurl,headers=self.headers,data=data)
-        if self.flag is False:
-            self.cookies1=login.cookies
-            self.flag=True
+        login=self.s.post(self.loginurl,headers=self.headers,data=data)
+
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('登录尝试次数过多')!=-1:
             Err='登录尝试次数过多,需输入验证码'
@@ -75,20 +72,22 @@ class Autoreply:
         'cktime': '0',
         'oneCode': str(my_token)
         }
-        login=requests.post(self.loginurl,headers=self.headers,data=data,cookies=self.cookies1)
+        login=self.s.post(self.loginurl,headers=self.headers,data=data)
         if self.over is False:
             self.cookies=login.cookies
             self.over=True
+            print('cookies为'+str(self.cookies))
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('您已經順利登錄')!=-1:
             res='已經順利登錄'
+            self.s.close()
             return res
 
     def getverwebp(self):
         code=random.uniform(0,1)
         code=round(code,16)
         vercodeurl='http://t66y.com/require/codeimg.php?'+str(code)
-        image=requests.get(vercodeurl,headers=self.headers1,cookies=self.cookies1)
+        image=self.s.get(vercodeurl,headers=self.headers1)
         f=open('image.webp','wb')
         f.write(image.content)
         f.close()
@@ -99,14 +98,14 @@ class Autoreply:
         data={
             'validate': vercode
         }
-        login=requests.post(self.loginurl,data=data,headers=self.headers1,cookies=self.cookies1)
+        login=self.s.post(self.loginurl,data=data,headers=self.headers1)
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('驗證碼不正確')!=-1:
             Err='验证码不正确，请重新输入'
             return Err
 
     def gettodaylist(self):
-        con=requests.get(self.url,headers=self.headers,cookies=self.cookies)
+        con=self.s.get(self.url,headers=self.headers)
         con = con.text.encode('iso-8859-1').decode('gbk')
         pat=('htm_data/\w+/\w+/\w+.html')
         match=re.findall(pat,con)
@@ -127,6 +126,7 @@ class Autoreply:
         self.tid=tid
         #print('请求链接是: '+geturl)
     
+    #不知道啥用，留着吧
     def getmatch(self):
         sleep(2)
         get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
@@ -141,8 +141,8 @@ class Autoreply:
 
     def getreply(self):
         #自定义回复内容，记得修改随机数
-        reply=['1024','感谢分享','谢谢分享']
-        reply_m=random.randint(0,2)
+        reply=['1024','感谢分享']
+        reply_m=random.randint(0,1)
         reply_news=reply[reply_m]
         self.reply_news=reply_news.encode('gb2312')
         print("本次回复内容是:"+reply_news)
@@ -205,8 +205,9 @@ if __name__ == "__main__":
     auto=Autoreply(user,password,secret)
     #登录
     while success is None:
-        while auto.login1()=='登录尝试次数过多,需输入验证码':
-            print('登录尝试次数过多,需输入验证码')
+        au=auto.login1()
+        while au=='登录尝试次数过多,需输入验证码':
+            print(au)
             auto.getverwebp()
             getcd=Getver()
             vercode=getcd.getcode()
@@ -218,11 +219,13 @@ if __name__ == "__main__":
                 if auto.login2()=='已經順利登錄':
                     print('登录成功')
                     success = True
+                    au=''
         else:
             if auto.login1()=='賬號已開啟兩步驗證':
                 while auto.login2()=='已經順利登錄':
                     print('登录成功')
                     success = True
+                    au=''
     m=auto.getnumber()
     auto.gettodaylist()
     #回复
