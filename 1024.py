@@ -140,8 +140,8 @@ class Autoreply:
 
     def getreply(self):
         #自定义回复内容，记得修改随机数
-        reply=['1024','感谢分享']
-        reply_m=random.randint(0,1)
+        reply=['1024','感谢分享','谢谢分享']
+        reply_m=random.randint(0,2)
         reply_news=reply[reply_m]
         self.reply_news=reply_news.encode('gb2312')
         print("本次回复内容是:"+reply_news)
