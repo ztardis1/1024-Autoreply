@@ -73,7 +73,6 @@ class Autoreply:
         'oneCode': str(my_token)
         }
         login=self.s.post(self.loginurl,headers=self.headers,data=data)
-        print('login.cookies'+str(login.cookies))
         if self.over is False and str(login.cookies)!='<RequestsCookieJar[]>' :
             self.cookies=login.cookies
             self.over=True
@@ -186,6 +185,7 @@ class Autoreply:
             return status
 
     def getnumber(self):
+        print(str(self.cookies))
         sleep(2)
         index=requests.get(self.indexurl,headers=self.headers,cookies=self.cookies)
         index = index.text.encode('iso-8859-1').decode('gbk')
