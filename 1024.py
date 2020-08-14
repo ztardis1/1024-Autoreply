@@ -123,7 +123,7 @@ class Autoreply:
         self.geturl=geturl
         tid=self.match[m][16:len(self.match[m])-5]
         self.tid=tid
-        #print('请求链接是: '+geturl)
+        print('请求链接是: '+geturl)
     
     #不知道啥用，留着吧
     def getmatch(self):
