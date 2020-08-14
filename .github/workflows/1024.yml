@@ -21,7 +21,7 @@ jobs:
 
     - name: install env
       run :
-        python3 -m pip install --upgrade pip
+
         pip3 install requests onetimepass pillow
 
     - name: run 1024.py
