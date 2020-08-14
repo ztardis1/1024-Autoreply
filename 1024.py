@@ -6,6 +6,7 @@ from time import sleep
 from urllib import parse
 import os
 from getver1 import Getver
+
 class Autoreply:
     result=None
     over=False
