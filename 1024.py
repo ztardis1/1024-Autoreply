@@ -75,7 +75,6 @@ class Autoreply:
         }
         login=self.s.post(self.loginurl,headers=self.headers,data=data)
         self.cookies=login.cookies
-        print(str(self.cookies))
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('您已經順利登錄')!=-1:
             res='已經順利登錄'
