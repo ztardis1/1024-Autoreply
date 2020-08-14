@@ -3,9 +3,6 @@ name: 1024-AutoReply
 on:
   watch:
     type:[started]
-  push:
-    branches:
-    - master
   schedule:
     - cron: '0 19 * * *'
 
