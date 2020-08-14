@@ -37,6 +37,7 @@ class Autoreply:
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36'
         }
+        
     def __init__(self,user,password,secret):
         self.user= user.encode('gb2312')
         self.password= password
