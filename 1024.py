@@ -73,12 +73,14 @@ class Autoreply:
         'oneCode': str(my_token)
         }
         login=self.s.post(self.loginurl,headers=self.headers,data=data)
-        if self.over is False:
+        print('login.cookies'+str(login.cookies))
+        if self.over is False and str(login.cookies)!='<RequestsCookieJar[]>' :
             self.cookies=login.cookies
             self.over=True
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('您已經順利登錄')!=-1:
             res='已經順利登錄'
+            self.s.close()
             return res
 
     def getverwebp(self):
@@ -126,20 +128,16 @@ class Autoreply:
     
     #不知道啥用，留着吧
     def getmatch(self):
-        try:
-            sleep(2)
-            get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
-            sleep(2)
-            get=get.text.encode('iso-8859-1').decode('gbk')
-            pat='<h4>.*</h4>'
-            res=re.search(pat,get)
-            res=res.group(0).replace('<h4>','').replace('</h4>','')
-            res='Re:'+res
-            self.res=res.encode('gb2312')
-            #print(res)
-        except:
-            print('出错')
-            pass
+        sleep(2)
+        get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
+        sleep(2)
+        get=get.text.encode('iso-8859-1').decode('gbk')
+        pat='<h4>.*</h4>'
+        res=re.search(pat,get)
+        res=res.group(0).replace('<h4>','').replace('</h4>','')
+        res='Re:'+res
+        self.res=res.encode('gb2312')
+        #print(res)
 
     def getreply(self):
         #自定义回复内容，记得修改随机数
@@ -190,14 +188,11 @@ class Autoreply:
     def getnumber(self):
         sleep(2)
         index=requests.get(self.indexurl,headers=self.headers,cookies=self.cookies)
-        sleep(2)
         index = index.text.encode('iso-8859-1').decode('gbk')
         pat='共發表帖子: \d{1,5}'
         num=re.search(pat,index).group(0)
         num=num.replace('共發表帖子: ','')
         return num
-
-
 
 if __name__ == "__main__":
     n=0
