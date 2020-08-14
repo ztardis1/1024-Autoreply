@@ -38,7 +38,7 @@ class Autoreply:
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36'
         }
-        
+
     def __init__(self,user,password,secret):
         self.user= user.encode('gb2312')
         self.password= password
@@ -207,7 +207,7 @@ if __name__ == "__main__":
     #登录
     while success is None:
         au=auto.login1()
-        while au=='登录尝试次数过多,需输入验证码':
+        if au=='登录尝试次数过多,需输入验证码':
             print(au)
             auto.getverwebp()
             getcd=Getver()
@@ -222,8 +222,8 @@ if __name__ == "__main__":
                     success = True
                     au=''
         else:
-            if auto.login1()=='賬號已開啟兩步驗證':
-                while auto.login2()=='已經順利登錄':
+            if au=='賬號已開啟兩步驗證':
+                if auto.login2()=='已經順利登錄':
                     print('登录成功')
                     success = True
                     au=''
