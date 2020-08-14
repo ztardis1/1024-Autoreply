@@ -9,12 +9,12 @@ from getver1 import Getver
 class Autoreply:
     result=None
     over=False
+    flag=False
     loginurl = 'http://t66y.com/login.php'
     url='http://t66y.com/thread0806.php?fid=7&search=today'
     posturl='http://t66y.com/post.php?'
     indexurl='http://t66y.com/index.php'
     black_list=['htm_data/2007/7/4032088.html','htm_data/2003/7/3832698.html','htm_data/1602/7/37458.html','htm_data/1502/7/1331010.html','htm_data/2005/7/2520305.html','htm_data/2005/7/2404767.html']
-    s=requests.Session()
     headers={
         'Host': 't66y.com',
         'Proxy-Connection': 'keep-alive',
@@ -44,7 +44,6 @@ class Autoreply:
 
     def login1(self):
         sleep(2)
-        flag=False
         Err=None
         data={
                 'pwuser': self.user,
@@ -55,7 +54,10 @@ class Autoreply:
                 'jumpurl': 'http://t66y.com/post.php?',
                 'step': '2'
         }
-        login=self.s.post(self.loginurl,headers=self.headers,data=data)
+        login=requests.post(self.loginurl,headers=self.headers,data=data)
+        if self.flag is False:
+            self.cookies1=login.cookies
+            self.flag=True
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('登录尝试次数过多')!=-1:
             Err='登录尝试次数过多,需输入验证码'
@@ -72,21 +74,20 @@ class Autoreply:
         'cktime': '0',
         'oneCode': str(my_token)
         }
-        login=self.s.post(self.loginurl,headers=self.headers,data=data)
-        if self.over is False and str(login.cookies)!='<RequestsCookieJar[]>' :
+        login=requests.post(self.loginurl,headers=self.headers,data=data,cookies=self.cookies1)
+        if self.over is False:
             self.cookies=login.cookies
             self.over=True
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('您已經順利登錄')!=-1:
             res='已經順利登錄'
-            self.s.close()
             return res
 
     def getverwebp(self):
         code=random.uniform(0,1)
         code=round(code,16)
         vercodeurl='http://t66y.com/require/codeimg.php?'+str(code)
-        image=self.s.get(vercodeurl,headers=self.headers1)
+        image=requests.get(vercodeurl,headers=self.headers1,cookies=self.cookies1)
         f=open('image.webp','wb')
         f.write(image.content)
         f.close()
@@ -97,14 +98,14 @@ class Autoreply:
         data={
             'validate': vercode
         }
-        login=self.s.post(self.loginurl,data=data,headers=self.headers1)
+        login=requests.post(self.loginurl,data=data,headers=self.headers1,cookies=self.cookies1)
         login=login.text.encode('iso-8859-1').decode('gbk')
         if login.find('驗證碼不正確')!=-1:
             Err='验证码不正确，请重新输入'
             return Err
 
     def gettodaylist(self):
-        con=self.s.get(self.url,headers=self.headers)
+        con=requests.get(self.url,headers=self.headers,cookies=self.cookies)
         con = con.text.encode('iso-8859-1').decode('gbk')
         pat=('htm_data/\w+/\w+/\w+.html')
         match=re.findall(pat,con)
