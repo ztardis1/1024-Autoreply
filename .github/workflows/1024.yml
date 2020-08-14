@@ -1,8 +1,11 @@
 name: 1024-AutoReply
 
-on:
+on: 
   watch:
-    type:[started]
+    types: [started]
+  push:
+    branches:
+      - maste
   schedule:
     - cron: '0 19 * * *'
 
