@@ -199,12 +199,11 @@ if __name__ == "__main__":
     n=0
     success=None
     suc=False
-    #设置参数
     user= os.environ["USER"]
     password= os.environ["PASSWORD"]
     secret =os.environ["SECRET"]
     auto=Autoreply(user,password,secret)
-    #登录
+
     while success is None:
         au=auto.login1()
         if au=='登录尝试次数过多,需输入验证码':
