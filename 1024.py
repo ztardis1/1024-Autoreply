@@ -41,7 +41,6 @@ class Autoreply:
         self.password= password
         self.secret =secret
 
-
     def login1(self):
         sleep(2)
         Err=None
