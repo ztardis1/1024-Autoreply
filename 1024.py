@@ -207,7 +207,7 @@ if __name__ == "__main__":
     while success is None:
         au=auto.login1()
         if au=='登录尝试次数过多,需输入验证码':
-            print(au)
+            print('登录尝试次数过多,需输入验证码')
             auto.getverwebp()
             getcd=Getver()
             vercode=getcd.getcode()
