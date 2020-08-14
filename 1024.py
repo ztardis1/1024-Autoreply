@@ -135,7 +135,7 @@ class Autoreply:
         res=re.search(pat,get)
         res=res.group(0).replace('<h4>','').replace('</h4>','')
         res='Re:'+res
-        self.res=res.encode('gb2312')
+        self.res=res
         #print(res)
 
     def getreply(self):
