@@ -109,6 +109,7 @@ class Autoreply:
         qiuzhutie=con.find('求片求助貼')
         qiuzhutie=con[qiuzhutie-100:qiuzhutie]
         qiuzhutielink=re.findall(pat,qiuzhutie)
+        print('求助帖链接是:'+qiuzhutielink)
         self.black_list.append(qiuzhutielink[0])
         match=re.findall(pat,con)
         try:
