@@ -1,6 +1,8 @@
 name: 1024-AutoReply
 
 on:
+  watch:
+    type:[started]
   push:
     branches:
       - master
