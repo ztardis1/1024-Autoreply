@@ -223,9 +223,9 @@ if __name__ == "__main__":
             getcd=Getver()
             vercode=getcd.getcode()
             while auto.inputvercode(vercode)=='验证码不正确，请重新输入':
+                auto.debug('验证码不正确，请重新输入')
                 auto.getverwebp()
                 vercode=getcd.getcode()
-                auto.debug('验证码不正确，请重新输入')
             if auto.login1()=='賬號已開啟兩步驗證':
                 if auto.login2()=='已經順利登錄':
                     auto.debug('登录成功')
