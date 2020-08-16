@@ -203,8 +203,8 @@ class Autoreply:
         num=num.replace('共發表帖子: ','')
         return num
     
-    def debug(self,str)
-        self.logger.debug(str)
+    def debug(self,content):
+        self.logger.debug(content)
 
 if __name__ == "__main__":
     n=0
