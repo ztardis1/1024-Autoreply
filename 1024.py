@@ -209,23 +209,23 @@ if __name__ == "__main__":
     while success is None:
         au=auto.login1()
         if au=='登录尝试次数过多,需输入验证码':
-            print('登录尝试次数过多,需输入验证码')
+            logger.debug('登录尝试次数过多,需输入验证码')
             auto.getverwebp()
             getcd=Getver()
             vercode=getcd.getcode()
             while auto.inputvercode(vercode)=='验证码不正确，请重新输入':
                 auto.getverwebp()
                 vercode=getcd.getcode()
-                print('验证码不正确，请重新输入')
+                logger.debug('验证码不正确，请重新输入')
             if auto.login1()=='賬號已開啟兩步驗證':
                 if auto.login2()=='已經順利登錄':
-                    print('登录成功')
+                    logger.debug('登录成功')
                     success = True
                     au=''
         else:
             if au=='賬號已開啟兩步驗證':
                 if auto.login2()=='已經順利登錄':
-                    print('登录成功')
+                    logger.debug('登录成功')
                     success = True
                     au=''
     m=auto.getnumber()
@@ -239,20 +239,20 @@ if __name__ == "__main__":
         sleeptime=random.randint(1024,2048)
         au=auto.postreply()
         if au=='回复成功':
-            print('回复成功')
+            logger.debug('回复成功')
             n=n+1
-            print('休眠'+str(sleeptime)+'s...')
+            logger.debug('休眠'+str(sleeptime)+'s...')
             sleep(sleeptime)
-            print('休眠完成')
+            logger.debug('休眠完成')
         elif au=='今日已达上限':
-            print('回复失败，今日次数已达10次')
+            logger.debug('回复失败，今日次数已达10次')
             suc=True
         else:
-            print('1024限制！！！')
-            print('休眠'+str(sleeptime)+'s...')
+            logger.debug('1024限制！！！')
+            logger.debug('休眠'+str(sleeptime)+'s...')
             sleep(sleeptime)
-            print('休眠完成')
+            logger.debug('休眠完成')
     n=auto.getnumber()
-    print('开始时发表帖子:'+m)
-    print('结束时发表帖子:'+n)
-    print('回复'+str(int(m)-int(n))+'次')
+    logger.debug('开始时发表帖子:'+m)
+    logger.debug('结束时发表帖子:'+n)
+    logger.debug('回复'+str(int(m)-int(n))+'次')
