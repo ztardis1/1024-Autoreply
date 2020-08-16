@@ -199,6 +199,13 @@ class Autoreply:
         return num
 
 if __name__ == "__main__":
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+    #formatter = logging.Formatter('%(asctime)s - %(message)s')
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+    #ch.setFormatter(formatter)
+    logger.addHandler(ch)
     n=0
     success=None
     suc=False
