@@ -25,5 +25,4 @@ class Getver:
         m=res.find('result')
         n=res.find('id')
         res=res[m+9:n-3]
-        print(res)
         return res
