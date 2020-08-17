@@ -27,6 +27,5 @@ class Getver:
         m=res.find('captcha')
         n=res.find('type')
         code=res[m+10:n-3]
-        print(code)
         return code
     
