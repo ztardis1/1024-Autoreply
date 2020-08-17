@@ -222,10 +222,12 @@ if __name__ == "__main__":
             auto.getverwebp()
             getcd=Getver()
             vercode=getcd.getcode()
+            auto.debug(vercode)
             while auto.inputvercode(vercode)=='验证码不正确，请重新输入':
                 auto.debug('验证码不正确，请重新输入')
                 auto.getverwebp()
                 vercode=getcd.getcode()
+                auto.debug(vercode)
             if auto.login1()=='賬號已開啟兩步驗證':
                 if auto.login2()=='已經順利登錄':
                     auto.debug('登录成功')
@@ -264,4 +266,4 @@ if __name__ == "__main__":
     n=auto.getnumber()
     auto.debug('开始时发表帖子:'+m)
     auto.debug('结束时发表帖子:'+n)
-    auto.debug('回复'+str(int(m)-int(n))+'次')
+    auto.debug('回复'+str(int(n)-int(m))+'次')
