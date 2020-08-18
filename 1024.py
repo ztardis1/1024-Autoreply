@@ -134,7 +134,12 @@ class Autoreply:
         tid=self.match[m][16:len(self.match[m])-5]
         self.tid=tid
         #print('请求链接是: '+geturl)
-    
+
+    def browse(self):
+        res=requests.get(url=self.geturl,headers=self.headers,cookies=self.cookies)
+        #res=res.text.encode('iso-8859-1').decode('gbk')
+        #print(res)
+
     #不知道啥用，留着吧
     def getmatch(self):
         sleep(2)
@@ -245,6 +250,7 @@ if __name__ == "__main__":
     while n<10 and suc is False:
         auto.debug("当前在第"+str(n+1)+'个。')
         auto.getonelink()
+        auto.browse()
         auto.getreply()
         auto.getmatch()
         sleeptime=random.randint(1024,2048)
