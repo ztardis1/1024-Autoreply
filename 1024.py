@@ -248,27 +248,30 @@ if __name__ == "__main__":
     auto.gettodaylist()
     #回复
     while n<10 and suc is False:
-        auto.debug("当前在第"+str(n+1)+'个。')
-        auto.getonelink()
-        auto.browse()
-        auto.getreply()
-        auto.getmatch()
-        sleeptime=random.randint(1024,2048)
-        au=auto.postreply()
-        if au=='回复成功':
-            auto.debug('回复成功')
-            n=n+1
-            auto.debug('休眠'+str(sleeptime)+'s...')
-            sleep(sleeptime)
-            auto.debug('休眠完成')
-        elif au=='今日已达上限':
-            auto.debug('回复失败，今日次数已达10次')
-            suc=True
-        else:
-            auto.debug('1024限制！！！')
-            auto.debug('休眠'+str(sleeptime)+'s...')
-            sleep(sleeptime)
-            auto.debug('休眠完成')
+        try:
+            auto.debug("当前在第"+str(n+1)+'个。')
+            auto.getonelink()
+            auto.browse()
+            auto.getreply()
+            auto.getmatch()
+            sleeptime=random.randint(1024,2048)
+            au=auto.postreply()
+            if au=='回复成功':
+                auto.debug('回复成功')
+                n=n+1
+                auto.debug('休眠'+str(sleeptime)+'s...')
+                sleep(sleeptime)
+                auto.debug('休眠完成')
+            elif au=='今日已达上限':
+                auto.debug('回复失败，今日次数已达10次')
+                suc=True
+            else:
+                auto.debug('1024限制！！！')
+                auto.debug('休眠'+str(sleeptime)+'s...')
+                sleep(sleeptime)
+                auto.debug('休眠完成')
+        except:
+            print('回复失败，重试')
     n=auto.getnumber()
     auto.debug('开始时发表帖子:'+m)
     auto.debug('结束时发表帖子:'+n)
