@@ -117,7 +117,7 @@ class Autoreply:
         if re.findall(pat,qiuzhutie)!=None:
             qiuzhutielink=re.findall(pat,qiuzhutie)
         else:
-            qiuzhutielink=''
+            qiuzhutielink=['']
         self.logger.debug('求助帖链接是:'+qiuzhutielink[0])
         self.black_list.append(qiuzhutielink[0])
         match=re.findall(pat,con)
