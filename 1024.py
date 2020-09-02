@@ -114,6 +114,7 @@ class Autoreply:
         con = con.text.encode('iso-8859-1').decode('gbk')
         qiuzhutie=con.find('求片求助貼')
         qiuzhutie=con[qiuzhutie-1:qiuzhutie]
+        print(re.findall(pat,qiuzhutie))
         if re.findall(pat,qiuzhutie)!=None:
             qiuzhutielink=re.findall(pat,qiuzhutie)
         else:
