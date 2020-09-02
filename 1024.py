@@ -114,11 +114,10 @@ class Autoreply:
         con = con.text.encode('iso-8859-1').decode('gbk')
         qiuzhutie=con.find('求片求助貼')
         qiuzhutie=con[qiuzhutie-1:qiuzhutie]
-        print(re.findall(pat,qiuzhutie))
-        if re.findall(pat,qiuzhutie)!=None:
+        if re.findall(pat,qiuzhutie)!='[]':
             qiuzhutielink=re.findall(pat,qiuzhutie)
         else:
-            qiuzhutielink=['']
+            qiuzhutielink=['no']
         self.logger.debug('求助帖链接是:'+qiuzhutielink[0])
         self.black_list.append(qiuzhutielink[0])
         match=re.findall(pat,con)
