@@ -112,19 +112,20 @@ class Autoreply:
         pat=('htm_data/\w+/\w+/\w+.html')
         con=self.s.get(self.url,headers=self.headers)
         con = con.text.encode('iso-8859-1').decode('gbk')
+        match=re.findall(pat,con)
+        self.match=match
         qiuzhutie=con.find('求片求助貼')
-        qiuzhutie=con[qiuzhutie-1:qiuzhutie]
-        if re.findall(pat,qiuzhutie)!='[]':
+        qiuzhutie=con[qiuzhutie-100:qiuzhutie]
+        if re.findall(pat,qiuzhutie)!=[]:
             qiuzhutielink=re.findall(pat,qiuzhutie)
         else:
             qiuzhutielink=['no']
+            self.match.append('no')
         self.logger.debug('求助帖链接是:'+qiuzhutielink[0])
         self.black_list.append(qiuzhutielink[0])
-        match=re.findall(pat,con)
         try:
             for data in self.black_list:
-                match.remove(data)
-            self.match=match
+                self.match.remove(data)
         except:
             print('移除失败，知道因为啥。。。')
             pass
@@ -136,6 +137,7 @@ class Autoreply:
         self.geturl=geturl
         tid=self.match[m][16:len(self.match[m])-5]
         self.tid=tid
+        self.match.remove(self.match[m])
         #print('请求链接是: '+geturl)
 
     def browse(self):
