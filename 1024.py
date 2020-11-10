@@ -111,7 +111,7 @@ class Autoreply:
     def gettodaylist(self):
         pat=('htm_data/\w+/\w+/\w+.html')
         con=self.s.get(self.url,headers=self.headers)
-        con = con.text.encode('iso-8859-1').decode('gbk')
+        con = con.text.encode('iso-8859-1').decode('gbk','ignore')
         match=re.findall(pat,con)
         self.match=match
         qiuzhutie=con.find('求片求助貼')
