@@ -23,7 +23,7 @@
 
         TOKER            阿里验证码识别接口AppCode
 
-(可选2)([注册地址](http://ttshitu.com/register.html?inviter=d14dbc3ccecc4df2b4e0eaebef556f13) )
+(可选2)([注册地址](http://ttshitu.com/register.html?inviter=3d92d1b2371f487d9072430a93bb043c) )
 
         CODEUSER         注册用户名
 
