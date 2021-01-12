@@ -46,7 +46,7 @@ class Autoreply:
         }
 
     def __init__(self,user,password,secret):
-        self.user= user.encode('gb2312')
+        self.user= user.encode('gb18030')
         self.password= password
         self.secret =secret
 
@@ -163,7 +163,7 @@ class Autoreply:
         reply=['感谢分享','感谢你的分享','谢谢分享','多谢分享']
         reply_m=random.randint(0,3)
         reply_news=reply[reply_m]
-        self.reply_news=reply_news.encode('gb2312')
+        self.reply_news=reply_news.encode('gb18030')
         self.logger.debug("本次回复内容是:"+reply_news)
 
     #暂时没用，看以后了
