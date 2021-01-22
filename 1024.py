@@ -261,7 +261,6 @@ if __name__ == "__main__":
             auto.getmatch()
             sleeptime=random.randint(1024,2048)
             au=auto.postreply()
-            print(au)
             if au=='回复成功':
                 auto.debug('回复成功')
                 n=n+1
