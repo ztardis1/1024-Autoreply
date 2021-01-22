@@ -151,9 +151,9 @@ class Autoreply:
         get=requests.get(self.geturl,headers=self.headers,cookies=self.cookies)
         sleep(2)
         get=get.text.encode('iso-8859-1').decode('gbk')
-        pat='<h4>.*</h4>'
+        pat='<b>本頁主題:</b> .*</td>'
         res=re.search(pat,get)
-        res=res.group(0).replace('<h4>','').replace('</h4>','')
+        res=res.group(0).replace('<b>本頁主題:</b> ','').replace('</td>','')
         res='Re:'+res
         self.res=res
         #print(res)
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     suc=False
     user= os.environ["USER"]
     password= os.environ["PASSWORD"]
-    secret =os.environ["SECRET"]
+    secret =os.environ["SECRET"]]
     auto=Autoreply(user,password,secret)
 
     while success is None:
@@ -261,6 +261,7 @@ if __name__ == "__main__":
             auto.getmatch()
             sleeptime=random.randint(1024,2048)
             au=auto.postreply()
+            print(au)
             if au=='回复成功':
                 auto.debug('回复成功')
                 n=n+1
