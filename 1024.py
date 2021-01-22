@@ -222,7 +222,7 @@ if __name__ == "__main__":
     suc=False
     user= os.environ["USER"]
     password= os.environ["PASSWORD"]
-    secret =os.environ["SECRET"]]
+    secret =os.environ["SECRET"]
     auto=Autoreply(user,password,secret)
 
     while success is None:
