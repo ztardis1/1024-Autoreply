@@ -44,7 +44,7 @@ ps:可选两个是识别验证码用的，任选其一即可，也可以都不�
 
 `from getver1 import Getver` 为 `from getver import Getver`
 
-<h4>2.(1)先点击Actions,同意使用协议。(**重要**)
+<h4>2.(1)先点击Actions,同意使用协议。**重要**
 
 (2)然后随便修改任一文件的内容进行一次提交，就可以在Actions里面看见项目运行</h4>
 
