@@ -116,7 +116,7 @@ class Autoreply:
         top=con[:theme]
         pin=re.findall(pat,top)
         for black in pin:
-            print('置顶帖为:'+black)
+            auto.debug('置顶帖为:'+black)
             black_list.append(black)
 
         match=re.findall(pat,con)
@@ -126,7 +126,7 @@ class Autoreply:
             for data in black_list:
                 self.match.remove(data)
         except:
-            print('移除失败，知道因为啥。。。')
+            auto.debug('移除失败，知道因为啥。。。')
             pass
 
     def getonelink(self):
