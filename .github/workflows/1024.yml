@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # 手动触发
   push:
     branches:
-      - master
+      - Multi_User
   schedule:
     - cron: '19 20 * * *'
 
