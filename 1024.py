@@ -19,13 +19,13 @@ class Autoreply:
         'Proxy-Connection': 'keep-alive',
         'Referer': 'http://t66y.com/index.php',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
     }
     headers1={
         'Host': 't66y.com',
         'Proxy-Connection': 'keep-alive',
         'Referer': 'http://t66y.com/login.php',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
     }
 
     def __init__(self,user,password,secret):
@@ -134,7 +134,7 @@ class Autoreply:
         'Proxy-Connection': 'keep-alive',
         'Referer': 'http://t66y.com/index.php',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
         }
         res=requests.get(url=geturl,headers=headers,cookies=cookies)
         #res=res.text.encode('iso-8859-1').decode('gbk')
@@ -146,7 +146,7 @@ class Autoreply:
         'Proxy-Connection': 'keep-alive',
         'Referer': 'http://t66y.com/index.php',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
         }
         sleep(2)
         get=requests.get(geturl,headers=headers,cookies=cookies)
@@ -189,7 +189,7 @@ class Autoreply:
         'Content-Type': 'application/x-www-form-urlencoded',
         'Proxy-Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
         }
         posturl='http://t66y.com/post.php?'
         data={
@@ -225,7 +225,7 @@ class Autoreply:
         'Proxy-Connection': 'keep-alive',
         'Referer': 'http://t66y.com/index.php',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
         }
         sleep(2)
         index=requests.get(indexurl,headers=headers,cookies=cookies)
