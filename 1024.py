@@ -7,6 +7,7 @@ from urllib import parse
 import os
 from getver1 import Getver
 from multiprocessing import Pool
+from config import config
 
 class Autoreply:
     result=None
@@ -100,22 +101,50 @@ class Autoreply:
         pat=('htm_data/\w+/\w+/\w+.html')
         con=self.s.get(self.url,headers=self.headers)
         con = con.text.encode('iso-8859-1').decode('gbk','ignore')
+        self.web_page=con
         theme=con.find('普通主題')
-        top=con[:theme]
-        pin=re.findall(pat,top)
-        for black in pin:
-            print('置顶帖为:'+black)
-            black_list.append(black)
 
-        match=re.findall(pat,con)
+        match=re.findall(pat,con[theme:])
         self.match=match
-        try:
-            for data in black_list:
+
+        max_test=3
+        flag=False
+        if  config.get('Forbid',False):
+            while max_test>0:
+                remove_list=[]
+                self.getModerator()
+                content=con[theme:]
+                pat='class="bl">(.*)?</a>'
+                all_user=re.findall(pat,content)
+                if len(all_user)!=len(self.match):
+                    max_test-=1
+                    print('获取列表失败，重试')
+                    continue
+                else:
+                    flag=True
+                    break
+
+            if not flag:
+                print('移除版主列表功能失效，请重试或者联系开发者更新')
+                os._exit(0)
+
+            for i in range(len(all_user)):
+                if all_user[i] in self.moderator_list:
+                    remove_list.append(self.match[i])
+            for data in remove_list:
+                print('移除的版主帖子为:'+data)
                 self.match.remove(data)
-        except:
-            print('移除失败，若出现此信息，请立即停止运行该脚本，删除定时任务中的触发，等待更新')
-            os._exit(0)
+            print('版主帖子移除完毕')
         return self.match
+
+    def getModerator(self):
+        moderator=self.web_page.find('版主')
+        moderator=self.web_page[moderator:moderator+800]
+        pat='username=(\w+)'
+        moderator_list=re.findall(pat,moderator)
+        print('版主列表:'+','.join(moderator_list))
+        self.moderator_list=moderator_list
+
 
     @staticmethod
     def getonelink(todaylist):
@@ -303,14 +332,21 @@ if __name__ == "__main__":
             if au=='登录尝试次数过多,需输入验证码':
                 print('登录尝试次数过多,需输入验证码')
                 auto.getverwebp()
-                getcd=Getver()
-                vercode=getcd.getcode()
-                print(vercode)
+                if config.get('Input_self',False):
+                    vercode=input('请手动输入验证码:')
+                else:
+                    getcd=Getver()
+                    vercode=getcd.getcode()
+                print('输入的验证码为:'+vercode)
                 while auto.inputvercode(vercode)=='验证码不正确，请重新输入':
                     print('验证码不正确，请重新输入')
                     auto.getverwebp()
-                    vercode=getcd.getcode()
-                    print(vercode)
+                    if config.get('Input_self',False):
+                        vercode=input('请手动输入验证码:')
+                    else:
+                        getcd=Getver()
+                        vercode=getcd.getcode()
+                    print('输入的验证码为:'+vercode)
                 if auto.login1()=='賬號已開啟兩步驗證':
                     if auto.login2()=='已經順利登錄':
                         print('登录成功')
