@@ -117,8 +117,13 @@ class Autoreply:
                 pat='class="bl">(.*)?</a>'
                 all_user=re.findall(pat,content)
                 if len(all_user)!=len(self.match):
+                    print(len(all_user),len(self.match))
                     max_test-=1
                     print('获取列表失败，重试')
+                    con=self.s.get(self.url,headers=self.headers)
+                    con = con.text.encode('iso-8859-1').decode('gbk','ignore')
+                    theme=con.find('普通主題')
+                    sleep(2)
                     continue
                 else:
                     flag=True
