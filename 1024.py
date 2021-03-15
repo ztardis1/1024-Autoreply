@@ -126,7 +126,6 @@ class Autoreply:
                     sleep(2)
                     pat=('htm_data/\w+/\w+/\w+.html')
                     self.match=re.findall(pat,con[theme:])
-                    continue
                 else:
                     flag=True
                     break
