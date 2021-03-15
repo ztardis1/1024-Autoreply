@@ -141,6 +141,7 @@ class Autoreply:
                 print('移除的版主帖子为:'+data)
                 self.match.remove(data)
             print('版主帖子移除完毕')
+        print(self.match)
         return self.match
 
     def getModerator(self):
