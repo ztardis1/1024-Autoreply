@@ -124,8 +124,8 @@ class Autoreply:
                     con = con.text.encode('iso-8859-1').decode('gbk','ignore')
                     theme=con.find('普通主題')
                     sleep(2)
-                    match=re.findall(pat,con[theme:])
-                    self.match=match
+                    pat=('htm_data/\w+/\w+/\w+.html')
+                    self.match=re.findall(pat,con[theme:])
                     continue
                 else:
                     flag=True
