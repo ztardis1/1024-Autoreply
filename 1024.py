@@ -307,7 +307,7 @@ if __name__ == "__main__":
     passwordlist=password.split()
     secretlist=secret.split()
 
-    if len(userlist)!=len(passwordlist) and len(passwordlist)!=len(secretlist):
+    if len(userlist)!=len(passwordlist) or len(passwordlist)!=len(secretlist):
         print('参数个数不匹配，请检查环境变量设置是否正确')
         os._exit(0)
     else:
